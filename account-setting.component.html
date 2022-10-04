@@ -1,0 +1,61 @@
+<div class="container-fluid boxContainer">
+    <div class="row">
+        <div class="col-lg-3 px-5">
+            <div class="list-group menu ml-4">
+                <a class="list-group-item list-group-item-action" routerLink="/account"><span><i class="fa-regular fa-user"></i></span>User Profile</a>
+                <a class="list-group-item list-group-item-action"><span><i class="fa-solid fa-user-pen active"></i></span>Profile Settings</a>
+                <a class="list-group-item list-group-item-action" routerLink="/history"><span><i class="fa-solid fa-shirt"></i></span>Order History</a>
+                <a (click)="signout()" class="list-group-item list-group-item-action"><span><i class="fa-solid fa-right-from-bracket "></i></span>Sign Out</a>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="main mt-2">
+                <h1>Profile Settings</h1>
+                <form class="mb-2" [formGroup]="formGroup" (ngSubmit)="submitForm()">
+                    <div class="row mt-4">
+                        <div class="col-lg-4 col-md-6 mb-2 mt-2">
+                            <label>Name</label>
+                            <input type="text" formControlName="name">
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-2 mt-2">
+                            <label>Email</label>
+                            <input type="text" formControlName="email">
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-2 mt-2">
+                            <label>Gender</label>
+                            <div class="row align-items-center boxRadio">
+                                <input type="radio" *ngIf="account.gender.value == 'Male';else elseGender1" class="radionGender" name="gt" (change)="check('Male')" checked><span>Male</span>
+                                <ng-template #elseGender1>
+                                    <input type="radio" class="radionGender" name="gt" (change)="check('Male')">
+                                </ng-template>
+                                <input type="radio" *ngIf="account.gender.value == 'Female';else elseGender2" class="radionGender" name="gt" (change)="check('Female')" checked><span>Female</span>
+                                <ng-template #elseGender2>
+                                    <input type="radio" class="radionGender" name="gt" (change)="check('Female')">
+                                </ng-template>
+                                <input type="radio" *ngIf="account.gender.value == 'Different';else elseGender3" class="radionGender" name="gt" (change)="check('Different')" checked><span>Different</span>
+                                <ng-template #elseGender3>
+                                    <input type="radio" class="radionGender" name="gt" (change)="check('Different')">
+                                </ng-template>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-2 mt-2">
+                            <label>Address</label>
+                            <input type="text" formControlName="address" placeholder="Please enter a address">
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-2 mt-2">
+                            <label>Phone Number</label>
+                            <input type="text" formControlName="telephoneNumber" placeholder="Please enter your telephone number">
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-2 mt-2">
+                            <label class="mb-3">Password</label>
+                            <span class="changePass" routerLink="/changePassword">Change Password</span>
+                        </div>
+                        <div class="col-12 mt-5">
+                            <button type="submit" class="btn btn-dark buttonSubmit" btn-lg btn-block>Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
